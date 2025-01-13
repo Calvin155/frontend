@@ -1,0 +1,14 @@
+/* Styles for the Home component */
+h1 {
+    color: #333; /* Dark gray text color */
+    font-size: 36px; /* Large font size */
+    text-align: center; /* Center-align the text */
+    margin-top: 20%; /* Push the text towards the center vertically */
+    font-family: Arial, Helvetica, sans-serif; /* Clean and modern font */
+  }
+  
+  /* Add a subtle shadow for a nice effect */
+  h1 {
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  

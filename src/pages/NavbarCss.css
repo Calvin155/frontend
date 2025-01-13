@@ -1,0 +1,21 @@
+/* Styles for the navigation bar */
+nav {
+    background-color: black; /* Black background */
+    padding: 10px; /* Padding around the nav items */
+    text-align: center; /* Center-align the nav items */
+  }
+  
+  /* Style for the links */
+  nav a {
+    color: white; /* Default link color */
+    text-decoration: none; /* Remove underline */
+    margin: 0 15px; /* Spacing between links */
+    font-size: 18px; /* Font size */
+    transition: color 0.3s; /* Smooth color transition on hover */
+  }
+  
+  /* Hover effect for links */
+  nav a:hover {
+    color: orange; /* Change color to orange on hover */
+  }
+  
