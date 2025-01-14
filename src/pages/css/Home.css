@@ -1,14 +1,85 @@
-/* Styles for the Home component */
-h1 {
-    color: #333; /* Dark gray text color */
-    font-size: 36px; /* Large font size */
-    text-align: center; /* Center-align the text */
-    margin-top: 20%; /* Push the text towards the center vertically */
-    font-family: Arial, Helvetica, sans-serif; /* Clean and modern font */
-  }
-  
-  /* Add a subtle shadow for a nice effect */
-  h1 {
+/* General Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+    box-sizing: border-box;
+}
+
+/* Home Component Styles */
+.home-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f9;
+}
+
+.home-title {
+    text-align: center;
+    color: #333;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 30px;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-  }
-  
+}
+
+/* Card Container - Flexbox */
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between cards */
+    justify-content: space-between; /* Ensure cards are spaced evenly */
+}
+
+/* Card Styles */
+.card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    flex: 0 0 calc(33.333% - 20px); /* 3 cards per row, with the gap taken into account */
+    margin-bottom: 20px;
+}
+
+.card:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.card-content {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.8;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1024px) {
+    .home-title {
+        font-size: 28px;
+    }
+
+    .card {
+        flex: 0 0 calc(50% - 20px); /* 2 cards per row on smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .home-title {
+        font-size: 24px;
+    }
+
+    .card {
+        flex: 0 0 calc(50% - 20px); /* 2 cards per row on tablets and smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        flex: 0 0 100%; /* 1 card per row on very small screens */
+    }
+}
