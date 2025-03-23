@@ -16,4 +16,25 @@
     font-size: 1.2em;
     color: #333;
   }
+
+ 
+  body{
+    background-color: #ececec;
+  }
+
+  .center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .center-heading {
+    text-align: center;
+    width: 100%;
+  }
+  
+
+
+  
   

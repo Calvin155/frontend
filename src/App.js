@@ -1,22 +1,15 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, NavLink } from "react-router-dom";
-import "./App.css"
-import Home from "./pages/Home"
-import ParticulateMatter from "./pages/AQIData"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
+import ParticulateMatter from "./pages/AQIData"; // Using the original import path
 
 function App() {
-
   return (
     <Router>
-    <nav>
-      <NavLink to="/">Home</NavLink> |{" "}
-      <NavLink to="/viewAQI">AQI Data</NavLink> |{" "}
-    </nav>
-  <Routes>
-    <Route path="/" element={<Home />} />
-    <Route path="/viewAQI" element={<ParticulateMatter />} />
-    </Routes>
-  </Router>
+      <Routes>
+        <Route path="/" element={<ParticulateMatter />} />
+      </Routes>
+    </Router>
   );
 }
 
