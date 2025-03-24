@@ -1,3 +1,5 @@
+Author: Calvin Lynch - K00271788
+Project - Air Quality Metrics Using A Raspberry Pi 5
 Front End Application - React:
 
 Purpose: View Envormental Metrics such as Co2 & PM.
