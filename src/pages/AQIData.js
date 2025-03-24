@@ -17,31 +17,31 @@ let rest_server_ip_address = "52.212.232.158";
 const getPMRecommendations = (pmData) => {
   const recommendations = [];
     if (pmData.pm1 <= 12) {
-      recommendations.push({ type: 'success', message: 'PM1 levels are good. Air quality is satisfactory.' });
+      recommendations.push({ type: 'success', message: 'PM1 levels are good. Air quality is Good.' });
     } else if (pmData.pm1 <= 35.4) {
-      recommendations.push({ type: 'warning', message: 'PM1 levels are moderate. Unusually sensitive people should consider reducing prolonged outdoor exertion.' });
+      recommendations.push({ type: 'warning', message: 'PM1 levels are moderate.' });
     } else if (pmData.pm1 <= 55.4) {
-      recommendations.push({ type: 'warning', message: 'PM1 levels are unhealthy for sensitive groups. Active children and adults, and people with respiratory disease should limit prolonged outdoor exertion.' });
+      recommendations.push({ type: 'warning', message: 'PM1 levels are unhealthy for sensitive groups..' });
     } else {
-      recommendations.push({ type: 'error', message: 'PM1 levels are unhealthy. Everyone should limit outdoor activities. Consider using air purifiers indoors.' });
+      recommendations.push({ type: 'error', message: 'PM1 levels are unhealthy. Consider using air purifiers.' });
     }
   
   if (pmData.pm2_5 <= 12) {
-    recommendations.push({ type: 'success', message: 'PM2.5 levels are good. Air quality is satisfactory.' });
+    recommendations.push({ type: 'success', message: 'PM2.5 levels are good. Air quality is Good.' });
   } else if (pmData.pm2_5 <= 35.4) {
-    recommendations.push({ type: 'warning', message: 'PM2.5 levels are moderate. Unusually sensitive people should consider reducing prolonged outdoor exertion.' });
+    recommendations.push({ type: 'warning', message: 'PM2.5 levels are moderate.' });
   } else if (pmData.pm2_5 <= 55.4) {
-    recommendations.push({ type: 'warning', message: 'PM2.5 levels are unhealthy for sensitive groups. Active children and adults, and people with respiratory disease should limit prolonged outdoor exertion.' });
+    recommendations.push({ type: 'warning', message: 'PM2.5 levels are unhealthy for sensitive Groups.' });
   } else {
-    recommendations.push({ type: 'error', message: 'PM2.5 levels are unhealthy. Everyone should limit outdoor activities. Consider using air purifiers indoors.' });
+    recommendations.push({ type: 'error', message: 'PM2.5 levels are unhealthy. Consider Air Purifiers.' });
   }
   
   if (pmData.pm10 <= 54) {
-    recommendations.push({ type: 'success', message: 'PM10 levels are good. Air quality is satisfactory.' });
+    recommendations.push({ type: 'success', message: 'PM10 levels are good. Air quality is Good.' });
   } else if (pmData.pm10 <= 154) {
-    recommendations.push({ type: 'warning', message: 'PM10 levels are moderate. Unusually sensitive people should consider reducing prolonged outdoor exertion.' });
+    recommendations.push({ type: 'warning', message: 'PM10 levels are moderate.' });
   } else {
-    recommendations.push({ type: 'error', message: 'PM10 levels are unhealthy. Consider using air purifiers and keeping windows closed.' });
+    recommendations.push({ type: 'error', message: 'PM10 levels are unhealthy. Consider using air purifiers.' });
   }
   
   return recommendations;
@@ -51,13 +51,13 @@ const getCO2Recommendations = (co2Data) => {
   const recommendations = [];
   
   if (co2Data.co2_ppm < 800) {
-    recommendations.push({ type: 'success', message: 'CO2 levels are good. Ventilation is adequate.' });
+    recommendations.push({ type: 'success', message: 'CO2 levels are good. Ventilation is Good.' });
   } else if (co2Data.co2_ppm < 1000) {
-    recommendations.push({ type: 'warning', message: 'CO2 levels are slightly elevated. Consider increasing ventilation.' });
+    recommendations.push({ type: 'warning', message: 'CO2 levels are Slightly High. Consider increasing ventilation such as openeing a window.' });
   } else if (co2Data.co2_ppm < 1500) {
-    recommendations.push({ type: 'warning', message: 'CO2 levels are elevated. Increase ventilation by opening windows or using mechanical ventilation.' });
+    recommendations.push({ type: 'warning', message: 'CO2 levels are High. Increase Ventilation, Introduce Carbon Purifiers & Open Windows if Possible.' });
   } else {
-    recommendations.push({ type: 'error', message: 'CO2 levels are high. Poor air quality may cause drowsiness and affect concentration. Increase ventilation immediately.' });
+    recommendations.push({ type: 'error', message: 'CO2 levels are high. Increase ventilation immediately.' });
   }
   
   return recommendations;
