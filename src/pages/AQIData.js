@@ -12,37 +12,60 @@ const SingleStatCard = ({ title, value }) => (
   </Card>
 );
 
-let rest_server_ip_address = "52.212.232.158";
+let rest_server_ip_address = "192.168.1.76";
 
 const getPMRecommendations = (pmData) => {
   const recommendations = [];
-    if (pmData.pm1 <= 12) {
-      recommendations.push({ type: 'success', message: 'PM1 levels are good. Air quality is Good.' });
-    } else if (pmData.pm1 <= 35.4) {
-      recommendations.push({ type: 'warning', message: 'PM1 levels are moderate.' });
-    } else if (pmData.pm1 <= 55.4) {
-      recommendations.push({ type: 'warning', message: 'PM1 levels are unhealthy for sensitive groups..' });
-    } else {
-      recommendations.push({ type: 'error', message: 'PM1 levels are unhealthy. Consider using air purifiers.' });
+    if (pmData.pm1 < 12) {
+      recommendations.push({ type: 'success', message: 'Detected - PM1 levels are Extremely Good. Good Job.' });
+    } else if (pmData.pm1 >= 12 && pmData.pm1 < 35) {
+      recommendations.push({ type: 'success', message: 'Detected - PM1 levels are Ok.' });
+    } else if (pmData.pm1 >= 35 && pmData.pm1 < 55) {
+      recommendations.push({ type: 'info', message: 'Detected - PM1 levels are unhealthy for sensitive groups.' });
+    } 
+    else if (pmData.pm1 >= 55 && pmData.pm1 < 150) {
+      recommendations.push({ type: 'warning', message: 'Detected - PM1 levels are High.' });
+    } 
+    else if (pmData.pm1 >= 150 && pmData.pm1 < 250) {
+      recommendations.push({ type: 'warning', message: 'Detected - PM1 levels are High and Unhealthy - Consider Ventilating the Area if Possible or Exit' });
+    } 
+    else {
+      recommendations.push({ type: 'error', message: 'Detected - PM1 Level Are Dangerous. Exit the Area or Attempt to ventilate the Area if Safe.' });
     }
   
-  if (pmData.pm2_5 <= 12) {
-    recommendations.push({ type: 'success', message: 'PM2.5 levels are good. Air quality is Good.' });
-  } else if (pmData.pm2_5 <= 35.4) {
-    recommendations.push({ type: 'warning', message: 'PM2.5 levels are moderate.' });
-  } else if (pmData.pm2_5 <= 55.4) {
-    recommendations.push({ type: 'warning', message: 'PM2.5 levels are unhealthy for sensitive Groups.' });
-  } else {
-    recommendations.push({ type: 'error', message: 'PM2.5 levels are unhealthy. Consider Air Purifiers.' });
-  }
+    if (pmData.pm2_5 < 12) {
+      recommendations.push({ type: 'success', message: 'Detected - PM2.5 levels are Extremely Good. Good Job.' });
+    } else if (pmData.pm2_5 >= 12 && pmData.pm2_5 < 35) {
+      recommendations.push({ type: 'success', message: 'Detected - PM2.5 levels are Ok.' });
+    } else if (pmData.pm2_5 >= 35 && pmData.pm2_5 < 55) {
+      recommendations.push({ type: 'info', message: 'Detected - PM2.5 levels are unhealthy for sensitive groups.' });
+    } 
+    else if (pmData.pm2_5 >= 55 && pmData.pm2_5 < 150) {
+      recommendations.push({ type: 'warning', message: 'Detected - PM2.5 levels are High.' });
+    } 
+    else if (pmData.pm2_5 >= 150 && pmData.pm2_5 < 250) {
+      recommendations.push({ type: 'warning', message: 'Detected - PM2.5 levels are High and Unhealthy - Consider Ventilating the Area if Possible or Exit' });
+    } 
+    else {
+      recommendations.push({ type: 'error', message: 'Detected - PM2.5 Level Are Dangerous. Exit the Area or Attempt to ventilate the Area if Safe.' });
+    }
   
-  if (pmData.pm10 <= 54) {
-    recommendations.push({ type: 'success', message: 'PM10 levels are good. Air quality is Good.' });
-  } else if (pmData.pm10 <= 154) {
-    recommendations.push({ type: 'warning', message: 'PM10 levels are moderate.' });
-  } else {
-    recommendations.push({ type: 'error', message: 'PM10 levels are unhealthy. Consider using air purifiers.' });
-  }
+    if (pmData.pm10 < 12) {
+      recommendations.push({ type: 'success', message: 'Detected - PM10 levels are Extremely Good. Good Job.' });
+    } else if (pmData.pm10 >= 12 && pmData.pm10 < 35) {
+      recommendations.push({ type: 'success', message: 'Detected - PM10 levels are Ok.' });
+    } else if (pmData.pm10 >= 35 && pmData.pm10 < 55) {
+      recommendations.push({ type: 'info', message: 'Detected - PM10 levels are unhealthy for sensitive groups.' });
+    } 
+    else if (pmData.pm10 >= 55 && pmData.pm10 < 150) {
+      recommendations.push({ type: 'warning', message: 'Detected - PM10 levels are High.' });
+    } 
+    else if (pmData.pm10 >= 150 && pmData.pm10 < 250) {
+      recommendations.push({ type: 'warning', message: 'Detected - PM10 levels are High and Unhealthy -Consider Ventilating the Area if Possible or Exit' });
+    } 
+    else {
+      recommendations.push({ type: 'error', message: 'Detected - PM10 Levels Are Dangerous. Exit the Area or Attempt to ventilate the Area if Safe.' });
+    }
   
   return recommendations;
 };
@@ -50,14 +73,16 @@ const getPMRecommendations = (pmData) => {
 const getCO2Recommendations = (co2Data) => {
   const recommendations = [];
   
-  if (co2Data.co2_ppm < 800) {
-    recommendations.push({ type: 'success', message: 'CO2 levels are good. Ventilation is Good.' });
-  } else if (co2Data.co2_ppm < 1000) {
-    recommendations.push({ type: 'warning', message: 'CO2 levels are Slightly High. Consider increasing ventilation such as openeing a window.' });
-  } else if (co2Data.co2_ppm < 1500) {
-    recommendations.push({ type: 'warning', message: 'CO2 levels are High. Increase Ventilation, Introduce Carbon Purifiers & Open Windows if Possible.' });
+  if (co2Data.co2_ppm < 500) {
+    recommendations.push({ type: 'success', message: 'Detected - CO2 levels are good. Ventilation is Good.' });
+  } else if (co2Data.co2_ppm > 500 && co2Data.co2_ppm < 1000) {
+    recommendations.push({ type: 'success', message: 'Detected - CO2 levels are ok. Little on the High Side. Consider increasing ventilation such as openeing a window.'});
+  } else if (co2Data.co2_ppm > 1000 && co2Data.co2_ppm < 2000) {
+    recommendations.push({ type: 'info', message: 'Detected - CO2 levels are High. Consider increasing ventilation such as openeing a Window or Door.' });
+  } else if (co2Data.co2_ppm > 2000 && co2Data.co2_ppm < 5000) {
+    recommendations.push({ type: 'warning', message: 'Detected - CO2 levels are High. Increase Ventilation, Introduce Carbon Purifiers & Open Windows if Possible. - May lead to headaches and reduced concentration; unhealthy for long-term exposure' });
   } else {
-    recommendations.push({ type: 'error', message: 'CO2 levels are high. Increase ventilation immediately.' });
+    recommendations.push({ type: 'error', message: 'Detected - CO2 levels are Dangerously high. Increase ventilation immediately - Can Cause Dizziness or Respiratory Conditions if Prolonged Exposure.' });
   }
   
   return recommendations;
@@ -69,9 +94,9 @@ const particulateMatterProducts = (pmData) => {
   
   let severity = "low";
   
-  if (pmData.pm2_5 > 35.4 || pmData.pm10 > 154 || pmData.pm1 > 35.4) {
+  if (pmData.pm2_5 > 55 || pmData.pm10 > 55 || pmData.pm1 > 55) {
     severity = "high";
-  } else if (pmData.pm2_5 > 12 || pmData.pm10 > 54 || pmData.pm1 > 12) {
+  } else if (pmData.pm2_5 > 12 || pmData.pm10 > 12 || pmData.pm1 > 12) {
     severity = "medium";
   }
   
@@ -91,7 +116,7 @@ const co2ProductRecommendations = (co2Data) => {
   
   let severity = "low";
   
-  if (co2Data.co2_ppm >= 1500) {
+  if (co2Data.co2_ppm >= 2000) {
     severity = "high";
   } else if (co2Data.co2_ppm >= 1000) {
     severity = "medium";
@@ -119,7 +144,7 @@ const ParticulateMatter = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const createHistoricalData = (currentData, dataType) => {
+    const data = (currentData, dataType) => {
       const timestamp = new Date(currentData[0]?.time || new Date().toISOString());
       
       return Array(10).fill().map((_, i) => {
@@ -132,8 +157,8 @@ const ParticulateMatter = () => {
           return {
             time: timeStr,
             pm1: currentData[0]?.value * (0.8 + Math.random() * 0.4),
-            pm2_5: currentData[1]?.value * (0.8 + Math.random() * 0.4),
-            pm10: currentData[2]?.value * (0.8 + Math.random() * 0.4)
+            pm2_5: currentData[2]?.value * (0.8 + Math.random() * 0.4),
+            pm10: currentData[1]?.value * (0.8 + Math.random() * 0.4)
           };
         } else {
           return {
@@ -157,11 +182,11 @@ const ParticulateMatter = () => {
           
           setPmData({ pm1, pm2_5, pm10 });
 
-          const pmHistoricalData = createHistoricalData(pmResponseData, 'pm');
+          const pmHistoricalData = data(pmResponseData, 'pm');
           setPmHistorical(pmHistoricalData);
         }
         
-        const co2Response = await axios.get('http://' + rest_server_ip_address + ':8000/aqi_co2_temp_humidity_data');
+        const co2Response = await axios.get('http://' + rest_server_ip_address + ':8000/aqi_co2_data');
         const co2ResponseData = co2Response.data;
         
         if (co2ResponseData && co2ResponseData.length >= 2) {
@@ -170,7 +195,7 @@ const ParticulateMatter = () => {
           
           setCo2Data({ co2_ppm, co2_percent });
           
-          const co2HistoricalData = createHistoricalData(co2ResponseData, 'co2');
+          const co2HistoricalData = data(co2ResponseData, 'co2');
           setCo2Historical(co2HistoricalData);
         }
         
@@ -202,9 +227,6 @@ const ParticulateMatter = () => {
   const co2Products = co2ProductRecommendations(co2Data);
   const co2_percent = co2Data.co2_ppm / 10000;
 
-
-
-
   return (
     <div>
       <h2 className="center-heading">Live Particulate Matter & CO2 Data</h2>
@@ -215,8 +237,18 @@ const ParticulateMatter = () => {
         <SingleStatCard title="CO2 (ppm)" value={co2Data.co2_ppm.toFixed(1)} />
         <SingleStatCard title="CO2 (%)" value={co2_percent.toFixed(2)} />
       </div>
-      
-      <h2 className="center-heading">Particulate Matter Time Series</h2>
+
+      <div
+  style={{
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'flex-start',
+    gap: '20px',
+    marginBottom: '40px',
+  }}
+>
+    <div style={{ flex: 1 }}>
+      <h3 style={{ textAlign: 'center' }}>Particulate Matter Time Series</h3>
       <ResponsiveContainer width="100%" height={300}>
         <LineChart data={pmHistorical}>
           <CartesianGrid strokeDasharray="3 3" />
@@ -229,56 +261,33 @@ const ParticulateMatter = () => {
           <Line type="monotone" dataKey="pm10" stroke="#ff7300" name="PM 10" />
         </LineChart>
       </ResponsiveContainer>
-      <h3 className="center-heading" style={{ textAlign: 'center' }}>PM Recommendations</h3>
-      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
-        <div style={{ maxWidth: '500px', width: '100%' }}>
-          {pmRecommendations.map((rec, index) => (
-            <Alert
-              key={index}
-              message={rec.message}
-              type={rec.type}
-              showIcon
-              style={{ marginBottom: '10px' }}
-            />
-          ))}
-        </div>
-      </div>
+    </div>
+    <div style={{ flex: 2, maxWidth: '500px' }}>
+      <h3 style={{ textAlign: 'center' }}>PM Results</h3>
+      {pmRecommendations.map((rec, i) => (
+        <Alert
+          key={i}
+          message={rec.message}
+          type={rec.type}
+          showIcon
+          style={{ marginBottom: '10px' }}
+        />
+      ))}
+    </div>
+  </div>
 
-      <Card 
-        title={pmProducts.title} 
-        style={{
-          marginBottom: '20px',
-          backgroundColor: pmProducts.severity === 'high' ? '#fff1f0' : 
-                          pmProducts.severity === 'medium' ? '#fffbe6' : '#f6ffed',
-          textAlign: 'center'
-        }}
-      >
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
-          <div>
-            <Title level={5}>Recommended Products:</Title>
-            <List
-              size="small"
-              bordered
-              dataSource={pmProducts.products}
-              renderItem={(item) => <List.Item>{item}</List.Item>}
-              style={{ width: '250px' }}
-            />
-          </div>
-          <div>
-            <Title level={5}>Air-Purifying Plants:</Title>
-            <List
-              size="small"
-              bordered
-              dataSource={pmProducts.plants}
-              renderItem={(item) => <List.Item>{item}</List.Item>}
-              style={{ width: '250px' }}
-            />
-          </div>
-        </div>
-      </Card>
+  <div
+  style={{
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'flex-start',
+    gap: '20px',
+    marginBottom: '40px',
+  }}
+  >
 
-      
-      <h2 className="center-heading">CO2 Time Series</h2>
+    <div style={{ flex: 1 }}>
+      <h3 style={{ textAlign: 'center' }}>CO₂ Time Series</h3>
       <ResponsiveContainer width="100%" height={300}>
         <LineChart data={co2Historical}>
           <CartesianGrid strokeDasharray="3 3" />
@@ -286,55 +295,25 @@ const ParticulateMatter = () => {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Line type="monotone" dataKey="co2_ppm" stroke="#82ca9d" name="CO2 (ppm)" />
+          <Line type="monotone" dataKey="co2_ppm" stroke="#82ca9d" name="CO₂ (ppm)"/>
+
         </LineChart>
       </ResponsiveContainer>
-      
-      <h3 className="center-heading" style={{ textAlign: 'center' }}>CO2 Recommendations</h3>
-      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
-        <div style={{ maxWidth: '500px', width: '100%' }}>
-          {co2Recommendations.map((rec, index) => (
-            <Alert
-              key={index}
-              message={rec.message}
-              type={rec.type}
-              showIcon
-              style={{ marginBottom: '10px' }}
-            />
-          ))}
-        </div>
-      </div>
+    </div>
 
-      
-      <Card
-          title={co2Products.title}
-          style={{
-            marginBottom: '20px',
-            backgroundColor: co2Products.severity === 'high' ? '#fff1f0' : co2Products.severity === 'medium' ? '#fffbe6' : '#f6ffed',
-            textAlign: 'center'
-          }}
-        >
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
-            <div style={{ width: '250px', textAlign: 'center' }}>
-              <Title level={5}>Recommended Products:</Title>
-              <List
-                size="small"
-                bordered
-                dataSource={co2Products.products}
-                renderItem={(item) => <List.Item>{item}</List.Item>}
-              />
-            </div>
-            <div style={{ width: '250px', textAlign: 'center' }}>
-              <Title level={5}>CO2-Absorbing Plants:</Title>
-              <List
-                size="small"
-                bordered
-                dataSource={co2Products.plants}
-                renderItem={(item) => <List.Item>{item}</List.Item>}
-              />
-            </div>
-          </div>
-        </Card>
+    <div style={{ flex: 2, maxWidth: '500px' }}>
+      <h3 style={{ textAlign: 'center' }}>CO₂ Recommendations</h3>
+      {co2Recommendations.map((rec, index) => (
+        <Alert
+          key={index}
+          message={rec.message}
+          type={rec.type}
+          showIcon
+          style={{ marginBottom: '10px' }}
+        />
+      ))}
+    </div>
+  </div>
 
     </div>
   );
